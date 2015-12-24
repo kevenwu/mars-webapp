@@ -1,0 +1,242 @@
+/*
+ * Globals
+ */
+
+body {
+  /*font-family: Georgia, "Times New Roman", Times, serif;*/
+  font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+  color: #555;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  font-weight: normal;
+  color: #333;
+}
+
+a.dark {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: #666;
+}
+
+a.dark:link, a.dark:visited, a.dark:active {
+  color: #666;
+  text-decoration: none;
+}
+
+a.dark:hover {
+  color: #385f8a;
+}
+
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+
+/*
+ * Masthead for nav
+ */
+
+.blog-masthead {
+  background-color: #428bca;
+  border-radius: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+  border-width: 0 0 1px;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+.blog-masthead .navbar-brand {
+  /*padding: 5px 15px;*/
+}
+
+.blog-masthead .navbar-brand,
+.blog-masthead .navbar-brand:hover,
+.blog-masthead .navbar-nav>li>a {
+  font-weight: 500;
+  color: #cdddeb;
+}
+
+.blog-masthead .navbar-nav>.active>a, 
+.blog-masthead .navbar-nav>.active>a:focus,
+.blog-masthead .navbar-nav>.active>a:hover,
+.blog-masthead .navbar-nav>li>a:hover,
+.blog-masthead .navbar-nav>.open>a, 
+.blog-masthead .navbar-nav>.open>a:focus, 
+.blog-masthead .navbar-nav>.open>a:hover {
+  color: #ffffff;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.blog-masthead .navbar-nav>.active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #ffffff;
+  border-left: 5px solid transparent;
+}
+
+
+/*
+ * Main column and sidebar layout
+ */
+
+.blog-main {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 40px;
+}
+
+/* Sidebar modules for boxing content */
+.blog-sidebar {
+  margin-top: 40px;
+}
+
+.sidebar-module {
+  padding: 15px;
+  margin: 0 -15px 15px;
+}
+.sidebar-module-inset {
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Pagination */
+.pager {
+  margin-bottom: 60px;
+  text-align: left;
+}
+.pager > li > a {
+  width: 140px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 30px;
+}
+
+
+/*
+ * Blog posts
+ */
+
+.blog-post {
+  margin-bottom: 60px;
+}
+.blog-post-title {
+  margin-bottom: 5px;
+  font-size: 40px;
+}
+.blog-post-meta {
+  margin-bottom: 20px;
+  color: #999;
+}
+
+
+/*
+ * Footer
+ */
+
+.blog-footer {
+  padding: 40px 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+.blog-footer p:last-child {
+  margin-bottom: 0;
+}
+
+.span-common {
+  display: inline-block;;
+  float: none;
+  padding: 3px 10px;
+  border: none;
+  margin: 0;
+  font-size: 14px;
+  line-height: 2em;
+  vertical-align: middle;
+  background-color: #e5e5e5;
+  border-radius: 4px;
+}
+
+.span-common:hover {
+  background-color: #909090;
+  color: white;
+}
+
+.span-info {
+  color: white;
+  background-color: #5bc0de;
+}
+
+.span-info:hover {
+  background-color: #2f96b4;
+}
+
+.span-success {
+  color: white;
+  background-color: #80bd01;
+}
+
+.span-success:hover {
+  background-color: #6ba44e;
+}
+
+.user-avatar img {
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+a.user-avatar img:hover {
+  text-decoration: none;
+}
+
+.usercard .user-name {
+  font-size: 16px;
+  margin-left: 0.5em;
+}
+
+.usercard .user-avatar img {
+  width: 48px;
+  height: 48px;
+}
+
+.user-name {
+  max-width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+}
