@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block header %}
+<link href="/static/lib/editor/editor.css" rel="stylesheet">
+<link href="/static/lib/webuploader/webuploader.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="row blog-edit">
+  <div class="col-md-8">
+    <ol class="breadcrumb">
+      <li><a href="/">主页</a></li>
+      <li class="active">写文章</li>
+    </ol>
+
+    <div class="panel">
+      <form id="edit_blog_form" action={{ url_for('blogs.create_blog') }} method='post'>
+        <span>标题：</span>
+        <input type="text" class="form-control" name="title">
+        <span>正文：</span>
+        <div class="markdown-editor">
+          <textarea class="editor" name="content" rows="20"></textarea>
+        </div>
+        <div class="editor-buttons">
+          <input type="submit" class="span-common span-primary" value="提交">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    {% include "users/usercard.html" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block bottom %}
+<script src="/static/lib/editor/editor.js"></script>
+<script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
+<script src="/static/lib/editor/ext.js"></script>
+<script>
+(function () {
+    var editor = new Editor();
+    editor.render($('.editor')[0]);
+
+    $("#edit_blog_form").on("submit", function(e) {
+        var required = ["title", "content"];
+        var form = $(this).get(0);
+        for (var i = 0; i < required.length; i++) {
+          if (!form[required[i]].value) {
+            $(form[required[i]]).select();
+            goTop();
+            return false;
+          }
+        }
+        return true;
+    });
+})();
+</script>
+{% endblock %}

@@ -42,8 +42,12 @@ a.dark:hover {
 
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1100px;
   }
+}
+
+.right {
+  float: right;
 }
 
 
@@ -62,7 +66,11 @@ a.dark:hover {
 }
 
 .blog-masthead .navbar-brand {
-  /*padding: 5px 15px;*/
+  padding: 5px 15px;
+}
+
+.blog-masthead .navbar-brand img {
+  padding-right: 5px;
 }
 
 .blog-masthead .navbar-brand,
@@ -70,6 +78,10 @@ a.dark:hover {
 .blog-masthead .navbar-nav>li>a {
   font-weight: 500;
   color: #cdddeb;
+}
+
+.blog-masthead .navbar-right {
+  margin-right: -28px;
 }
 
 .blog-masthead .navbar-nav>.active>a, 
@@ -104,9 +116,10 @@ a.dark:hover {
  */
 
 .blog-main {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
   margin-top: 40px;
+  padding-right: 30px;
 }
 
 /* Sidebar modules for boxing content */
@@ -116,7 +129,7 @@ a.dark:hover {
 
 .sidebar-module {
   padding: 15px;
-  margin: 0 -15px 15px;
+  margin: 0 0 15px;
 }
 .sidebar-module-inset {
   padding: 15px;
@@ -147,6 +160,25 @@ a.dark:hover {
  * Blog posts
  */
 
+.blog-cell {
+  padding: 10px 0;
+  text-align: justify;
+}
+
+.blog-cell-footer {
+  padding: 50x 0;
+  font-size: 14px;
+  color: #999
+}
+
+.blog-cell-footer >p {
+  /*margin-bottom: 0;*/
+}
+
+.blog-cell-footer >p >span {
+  margin-left: 1em;
+}
+
 .blog-post {
   margin-bottom: 60px;
 }
@@ -155,7 +187,7 @@ a.dark:hover {
   font-size: 40px;
 }
 .blog-post-meta {
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   color: #999;
 }
 
@@ -184,13 +216,22 @@ a.dark:hover {
   font-size: 14px;
   line-height: 2em;
   vertical-align: middle;
+  text-align: center;
   background-color: #e5e5e5;
   border-radius: 4px;
 }
 
 .span-common:hover {
   background-color: #909090;
+}
+
+.span-primary {
   color: white;
+  background-color: #08c;
+}
+
+.span-primary:hover {
+  background-color: #05c;
 }
 
 .span-info {
@@ -200,6 +241,39 @@ a.dark:hover {
 
 .span-info:hover {
   background-color: #2f96b4;
+}
+
+.span-github {
+  border: 1px solid #ddd;
+  color: white;
+  background-color: #5bc0de;
+  width: 48%;
+  margin-right: 5px;
+}
+
+.span-github:hover {
+  background-color: #2f96b4
+}
+
+.span-github img {
+  /*vertical-align: top;*/
+  padding-bottom: 2px;
+}
+
+.span-weibo {
+  border: 1px solid #ddd;
+  color: #555;
+  background-color: #ffffff;
+  width: 48%;
+}
+
+.span-weibo:hover {
+  background-color: #e5e5e5
+}
+
+.span-weibo img {
+  /*vertical-align: top;*/
+  padding-bottom: 2px;
 }
 
 .span-success {
@@ -239,4 +313,37 @@ a.user-avatar img:hover {
   display: inline-block;
   vertical-align: middle;
   font-size: 14px;
+}
+
+.blog-edit {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.blog-edit .panel {
+  padding: 15px;
+  background-color: #f5f5f5;
+}
+
+.blog-edit form input {
+  margin-bottom: 15px;
+  border: none;
+}
+
+.blog-edit .editor-buttons {
+  margin-top: 20px;
+}
+
+.blog-detail {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.markdown-editor {
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.list-group {
+  border: none;
 }

@@ -16,36 +16,39 @@ github = OAuth2Service(
   client_secret=app.config['GITHUB_CLIENT_SECRET']
 )
 
-@mod.before_request
+@app.before_request
 def before_request():
   g.user = None
   if 'user_id' in session:
     g.user = User.query.get(session['user_id'])
 
-@mod.route('/login/', methods=['GET', 'POST'])
+@mod.route('/login/')
 def login():
-  redirect_uri = url_for('authorized', next=request.args.get('next') or 
+  redirect_uri = url_for('users.authorized', next=request.args.get('next') or 
     request.referrer or None, _external=True)
-  print(redirect_uri)
-  params = {'redirect_uri': redirect_uri, 'scope': 'user:email'} 
-  print(github.get_authorize_url(**params))
+  params = {'redirect_uri': redirect_uri, 'scope': 'user:email'}
   return redirect(github.get_authorize_url(**params))
 
-@app.route('/github/callback')
+@mod.route('/github/callback')
 def authorized():
   if not 'code' in request.args:
     return redirect(url_for('index'))
 
-  redirect_uri = url_for('authorized', _external=True)
+  redirect_uri = url_for('users.authorized', _external=True)
 
   data = dict(code=request.args['code'],
     redirect_uri=redirect_uri,
     scope='user:email,public_repo')
-
   auth = github.get_auth_session(data=data)
-  me = auth.get('user').json()
 
-  # user = User.get_or_create(me['login'], me['name'])
+  me = auth.get('user').json()
+  print me
+
+  user = User.query.filter_by(id=me['id']).first()
+  if not user:
+    user = User(id=me['id'], name=me['name'] or me['login'], avatar=me['avatar_url'])
+    db.session.add(user)
+    db.session.commit()
 
   session['token'] = auth.access_token
   session['user_id'] = user.id
@@ -53,7 +56,9 @@ def authorized():
   # flash('Logged in as ' + me['name'])
   return redirect(url_for('index'))
 
-@mod.route('/register/', methods=['GET', 'POST'])
-def register():
-  pass
+@mod.route('/logout/')
+def logout():
+  session.pop('user_id', None)
+  session.pop('token', None)
+  return redirect(url_for('index'))
 

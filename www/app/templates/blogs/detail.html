@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block header %}
+<link href="/static/lib/editor/editor.css" rel="stylesheet">
+<link href="/static/lib/webuploader/webuploader.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-8 blog-detail">
+    <ol class="breadcrumb">
+      <li><a href="/">主页</a></li>
+      <li class="active">文章详情</li>
+    </ol>
+
+    <div class="blog-cell">
+      <h3>文章标题文章标题文章标题文章标题文章标题</h3>
+
+      <div class="blog-cell-footer">
+        <p class="right">回复 <a href="/">5</a><span>浏览 1400</span></p>
+        <p>2015年12月24日<span><a href="#"> 游牧小侠</a></span></p>
+      </div>
+
+      <p>Cocoa不是一种编程语言（它可以运行多种编程语言），它也不是一个开发工具（通过命令行我们仍然可以开发Cocoa程序），它是创建Mac OS X和IOS程序的原生面向对象API，为这两者应用提供了编程环境。我们通常称为“Cocoa框架”，事实上Cocoa本身是一个框架的集合，它包含了众多子框架，其中最重要的要数“Foundation”和“UIKit”。前者是框架的基础，和界面无关，其中包含了大量常用的API；后者是基础的UI类库，以后我们在IOS开发中会经常用到。这两个框架在系统中的位置如下图：...</p>
+      <p>Cocoa不是一种编程语言（它可以运行多种编程语言），它也不是一个开发工具（通过命令行我们仍然可以开发Cocoa程序），它是创建Mac OS X和IOS程序的原生面向对象API，为这两者应用提供了编程环境。我们通常称为“Cocoa框架”，事实上Cocoa本身是一个框架的集合，它包含了众多子框架，其中最重要的要数“Foundation”和“UIKit”。前者是框架的基础，和界面无关，其中包含了大量常用的API；后者是基础的UI类库，以后我们在IOS开发中会经常用到。这两个框架在系统中的位置如下图：...</p>
+    </div>
+
+    <div style="margin-top:10px;">
+      <a href="#" class="right">下一篇</a>
+      <a href="#">上一篇</a>
+    </div>
+
+    <div style="margin-top:30px;">
+      <div class="sidebar-module sidebar-module-inset">
+        <div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
+          <div>2天前</div>
+        </div>
+        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
+      </div>
+      
+      <div class="sidebar-module sidebar-module-inset">
+        <div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
+          <div>2天前</div>
+        </div>
+        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
+      </div>
+
+      <div class="sidebar-module sidebar-module-inset">
+        <div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
+          <div>2天前</div>
+        </div>
+        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
+      </div>
+
+      <div class="sidebar-module sidebar-module-inset">
+        <div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
+          <div>2天前</div>
+        </div>
+        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
+      </div>
+
+      <div class="sidebar-module sidebar-module-inset">
+        <div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
+          <div>2天前</div>
+        </div>
+        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
+      </div>
+    </div>
+
+    <div class="sidebar-module sidebar-module-inset">
+      <form id="edit_blog_form" action={{ url_for('blogs.create_blog') }} method='post'>
+        <div class="markdown-editor">
+          <textarea class="editor" name="content" rows="8"></textarea>
+        </div>
+        <div class="editor-buttons">
+          <input type="submit" class="span-common span-primary" value="回复">
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="col-md-4">
+    {% include "blogs/sidebar.html" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block bottom %}
+<script src="/static/lib/editor/editor.js"></script>
+<script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
+<script src="/static/lib/editor/ext.js"></script>
+<script>
+(function () {
+    var editor = new Editor();
+    editor.render($('.editor')[0]);
+
+    $("#edit_blog_form").on("submit", function(e) {
+      
+    });
+})();
+</script>
+{% endblock %}

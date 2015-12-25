@@ -1,0 +1,2 @@
+DRAFT = 0
+PUBLIC = 1

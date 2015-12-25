@@ -6,10 +6,3 @@ ROLE = {
   WRITER: 'writer',
   READER: 'reader',
 }
-
-ACTIVE = 0
-INACTIVE = 1
-STATUS = {
-  ACTIVE: 'active',
-  INACTIVE: 'inactive',
-}

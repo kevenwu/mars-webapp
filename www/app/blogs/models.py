@@ -9,6 +9,7 @@ class Blog(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
   title = db.Column(db.String(120))
   content = db.Column(db.Text)
+  status = db.Column(db.SmallInteger, default=BLOG.DRAFT)
   read_num = db.Column(db.Integer)
   created_at = db.Column(db.Integer, default=int(time.time()))
   modified_at = db.Column(db.Integer, default=int(time.time()))
