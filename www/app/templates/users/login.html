@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block header %}
+<style type="text/css">
+  body {
+    background-color: #f9f9f9;
+  }
+
+  nav {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .span-common {
+    padding: 3px 10px;
+    font-size: 18px;
+  }
+
+  .span-github {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    color: white;
+    background-color: #5bc0de;
+    width: 100%;
+  }
+
+  .span-github:hover {
+    background-color: #2f96b4
+  }
+
+  .span-github img {
+    /*vertical-align: top;*/
+    padding-bottom: 2px;
+  }
+
+  .span-weibo {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    color: #555;
+    background-color: #ffffff;
+    width: 100%;
+  }
+
+  .span-weibo:hover {
+    background-color: #e5e5e5
+  }
+
+  .span-weibo img {
+    /*vertical-align: top;*/
+    padding-bottom: 2px;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<!-- <div> -->
+<div style="margin: 0 auto; width: 360px; padding: 30px; background-color: #fff; margin-top:80px; border-radius: 4px;">
+<div style="width: 64px; height:64px; margin-right: auto; margin-left: auto;">
+  <a href="/"><img src="/static/img/logo64.png"></a>
+</div>
+<p style="margin-top:20px; text-align: center; font-size:22px;">
+  Kevenwu的官方网站
+</p>
+<p style="width: 240px; margin-right: auto; margin-left: auto; ">
+  <a href={{ url_for('users.login') }}>
+    <span class="span-common span-github">
+      <img src="/static/img/github.png"> GitHub登录</span>
+  </a>
+  <a href={{ url_for('users.login') }}>
+    <span class="span-common span-weibo">
+      <img src="/static/img/weibo.png"> 微博登录
+    </span>
+  </a>
+</p>
+</div>
+<!-- </div> -->
+{% endblock %}

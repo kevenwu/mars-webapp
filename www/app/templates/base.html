@@ -64,9 +64,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ g.user.name }} <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">写文章</a></li>
-                <li><a href="#">我的博客</a></li>
-                <li><a href="#">我的评论</a></li>
+                <li><a href={{ url_for('blogs.create_blog') }}>写文章</a></li>
+                <li><a href="#">我的主页</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href={{ url_for('users.logout') }}>退出登录</a></li>
               </ul>

@@ -10,9 +10,12 @@ class Blog(db.Model):
   title = db.Column(db.String(120))
   content = db.Column(db.Text)
   status = db.Column(db.SmallInteger, default=BLOG.DRAFT)
-  read_num = db.Column(db.Integer)
+  read_num = db.Column(db.Integer, default=0)
   created_at = db.Column(db.Integer, default=int(time.time()))
   modified_at = db.Column(db.Integer, default=int(time.time()))
+
+  def __repr__(self):
+    return '<Blog %r>' % (self.title)
 
 class Comment(db.Model):
 

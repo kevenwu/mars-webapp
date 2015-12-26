@@ -8,41 +8,34 @@
 {% block body %}
 <div class="row">
   <div class="col-md-8 blog-detail">
-    <ol class="breadcrumb">
-      <li><a href="/">主页</a></li>
-      <li class="active">文章详情</li>
-    </ol>
 
-    <div class="blog-cell">
-      <h3>文章标题文章标题文章标题文章标题文章标题</h3>
+    <div class="title"><h1>{{ blog.title }}</h1></div>
 
-      <div class="blog-cell-footer">
-        <p class="right">回复 <a href="/">5</a><span>浏览 1400</span></p>
-        <p>2015年12月24日<span><a href="#"> 游牧小侠</a></span></p>
-      </div>
-
-      <p>Cocoa不是一种编程语言（它可以运行多种编程语言），它也不是一个开发工具（通过命令行我们仍然可以开发Cocoa程序），它是创建Mac OS X和IOS程序的原生面向对象API，为这两者应用提供了编程环境。我们通常称为“Cocoa框架”，事实上Cocoa本身是一个框架的集合，它包含了众多子框架，其中最重要的要数“Foundation”和“UIKit”。前者是框架的基础，和界面无关，其中包含了大量常用的API；后者是基础的UI类库，以后我们在IOS开发中会经常用到。这两个框架在系统中的位置如下图：...</p>
-      <p>Cocoa不是一种编程语言（它可以运行多种编程语言），它也不是一个开发工具（通过命令行我们仍然可以开发Cocoa程序），它是创建Mac OS X和IOS程序的原生面向对象API，为这两者应用提供了编程环境。我们通常称为“Cocoa框架”，事实上Cocoa本身是一个框架的集合，它包含了众多子框架，其中最重要的要数“Foundation”和“UIKit”。前者是框架的基础，和界面无关，其中包含了大量常用的API；后者是基础的UI类库，以后我们在IOS开发中会经常用到。这两个框架在系统中的位置如下图：...</p>
+    <div class="desp">
+      <p class="right">
+        {% if author.id == g.user.id %}
+        <span><a href={{ url_for('blogs.edit_blog', blogid=blog.id) }}>编辑</a></span><span><a class="warn">删除</a></span>
+        {% endif %}
+        <span>评论 5</span>
+        <span>浏览 {{ blog.read_num }}</span>
+      </p>
+      <p>{{ blog.created_at }}<span>作者：<a href="#">{{ author.name }}</a></span><span>修改于：{{ blog.modified_at }}</span></p>
     </div>
 
-    <div style="margin-top:10px;">
-      <a href="#" class="right">下一篇</a>
-      <a href="#">上一篇</a>
+    <hr>
+
+    <div class="content">{{ blog.content|safe }}</div>
+
+    <div class="footer">
+      <a href="#" class="right">下一篇<span class="glyphicon glyphicon-chevron-right"></span></a>
+      <a href="#"><span class="glyphicon glyphicon-chevron-left"></span>上一篇</a>
     </div>
+    
 
     <div style="margin-top:30px;">
       <div class="sidebar-module sidebar-module-inset">
         <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
-          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
-          <div>2天前</div>
-        </div>
-        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
-      </div>
-      
-      <div class="sidebar-module sidebar-module-inset">
-        <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/logo_light40.png" width=36></img></div>
           <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
           <div>2天前</div>
         </div>
@@ -51,7 +44,7 @@
 
       <div class="sidebar-module sidebar-module-inset">
         <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/logo_light40.png" width=36></img></div>
           <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
           <div>2天前</div>
         </div>
@@ -60,7 +53,7 @@
 
       <div class="sidebar-module sidebar-module-inset">
         <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/logo_light40.png" width=36></img></div>
           <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
           <div>2天前</div>
         </div>
@@ -69,7 +62,7 @@
 
       <div class="sidebar-module sidebar-module-inset">
         <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/touxiang.jpg" width=36></img></div>
+          <div style="float:left; margin-right:10px;"><img src="/static/img/logo_light40.png" width=36></img></div>
           <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
           <div>2天前</div>
         </div>
@@ -91,7 +84,13 @@
   </div>
 
   <div class="col-md-4">
-    {% include "blogs/sidebar.html" %}
+    <div class="blog-sidebar">
+    {% include "sidebar/author.html" %}
+    {% if not g.user %}
+    {% include "sidebar/usercard.html" %}
+    {% endif %}
+    {% include "sidebar/archive.html" %}
+    </div>
   </div>
 </div>
 {% endblock %}

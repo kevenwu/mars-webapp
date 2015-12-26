@@ -1,0 +1,33 @@
+{% if not g.user %}
+<div class="sidebar-module sidebar-module-inset">
+  <p>这里是Kevenwu的官方网站</p>
+  <p>
+    <a href={{ url_for('users.login') }}>
+      <span class="span-common span-github">
+        <img src="/static/img/github.png"> GitHub登录</span>
+    </a>
+    <a href={{ url_for('users.login') }}>
+      <span class="span-common span-weibo">
+        <img src="/static/img/weibo.png"> 微博登录
+      </span>
+    </a>
+  </p>
+</div>
+{% else %}
+<div class="sidebar-module sidebar-module-inset">
+  <p>你好，{{ g.user.name }}！</p>
+  <div class="usercard">
+    <a class="user-avatar" href="#">
+      <img src={{ g.user.avatar }}>
+    </a>
+    <span class="user-name"><a href="#" class="dark">{{ g.user.name }}</a></span>
+  </div>
+</div>
+<div class="sidebar-module sidebar-module-inset">
+  <div>
+    <a href={{ url_for('blogs.create_blog') }}>
+      <span class="span-common span-success">写文章</span>
+    </a>
+  </div>
+</div>
+{% endif %}

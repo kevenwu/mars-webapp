@@ -6,31 +6,6 @@
   <div class="col-sm-8 blog-main">
 
     {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
-    {% include "blogs/cell.html" %}
-    <hr>
     {% include "blogs/cell.html" %}
 
     <nav>
@@ -56,7 +31,11 @@
   </div><!-- /.blog-main -->
 
   <div class="col-sm-4">
-  {% include "blogs/sidebar.html" %}
+    <div class="blog-sidebar">
+    {% include "sidebar/usercard.html" %}
+    {% include "sidebar/archive.html" %}
+    {% include "sidebar/contact.html" %}
+    </div>
   </div><!-- /.blog-sidebar -->
 
 </div><!-- /.row -->

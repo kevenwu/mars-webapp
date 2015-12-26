@@ -10,20 +10,15 @@
   <div class="col-md-8">
     <ol class="breadcrumb">
       <li><a href="/">主页</a></li>
-      <li class="active">写文章</li>
+      <li class="active">{{ '编辑文章' if isEdit else '写文章' }}</li>
     </ol>
 
     <div class="panel">
-      <form id="edit_blog_form" action={{ url_for('blogs.create_blog') }} method='post'>
-        <span>标题：</span>
-        <input type="text" class="form-control" name="title">
-        <span>正文：</span>
-        <div class="markdown-editor">
-          <textarea class="editor" name="content" rows="20"></textarea>
-        </div>
-        <div class="editor-buttons">
-          <input type="submit" class="span-common span-primary" value="提交">
-        </div>
+      {% from "forms/macros.html" import render_field %}
+      <form method="post">
+        {{ render_field(form.title, class="form-control") }}
+        {{ render_field(form.content, class="editor") }}
+        <input type="submit" class="span-common span-primary" value="提交">
       </form>
     </div>
   </div>
@@ -42,19 +37,6 @@
 (function () {
     var editor = new Editor();
     editor.render($('.editor')[0]);
-
-    $("#edit_blog_form").on("submit", function(e) {
-        var required = ["title", "content"];
-        var form = $(this).get(0);
-        for (var i = 0; i < required.length; i++) {
-          if (!form[required[i]].value) {
-            $(form[required[i]]).select();
-            goTop();
-            return false;
-          }
-        }
-        return true;
-    });
 })();
 </script>
 {% endblock %}
