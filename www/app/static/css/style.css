@@ -385,6 +385,7 @@ a.user-avatar img:hover {
 .blog-detail {
   margin-top: 60px;
   margin-bottom: 40px;
+  line-height: 2em;
 }
 
 .blog-detail hr {
