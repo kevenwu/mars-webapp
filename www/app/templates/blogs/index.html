@@ -1,34 +1,12 @@
 {% extends "base.html" %}
-{% block body %}
+{% set active_page = "index" %}
 
+{% block body %}
 <div class="row">
 
   <div class="col-sm-8 blog-main">
-
-    {% include "blogs/cell.html" %}
-    {% include "blogs/cell.html" %}
-
-    <nav>
-      <ul class="pagination pagination-sm">
-        <li>
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li>
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-  </div><!-- /.blog-main -->
+    {% include 'blogs/bloglist.html' %}
+  </div>
 
   <div class="col-sm-4">
     <div class="blog-sidebar">
@@ -36,8 +14,7 @@
     {% include "sidebar/archive.html" %}
     {% include "sidebar/contact.html" %}
     </div>
-  </div><!-- /.blog-sidebar -->
+  </div>
 
-</div><!-- /.row -->
-
+</div>
 {% endblock %}

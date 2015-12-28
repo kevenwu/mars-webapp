@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="row">
+
+  <div class="col-sm-8 blog-main">
+    <ol class="breadcrumb">
+      <li><a href="/">主页</a></li>
+      <li class="active">{{ author.name }}的文章</li>
+    </ol>
+    {% include 'blogs/bloglist.html' %}
+  </div>
+
+  <div class="col-sm-4">
+    <div class="blog-sidebar">
+    {% include "sidebar/author.html" %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

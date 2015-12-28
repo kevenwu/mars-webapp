@@ -1,9 +1,18 @@
 <div class="sidebar-module sidebar-module-inset">
   <p>作者</p>
   <div class="usercard">
-    <a class="user-avatar" href="#">
+    <a class="user-avatar" href="{{ url_for('users.profile', userid=author.id) }}">
       <img src={{ author.avatar }}>
     </a>
-    <span class="user-name"><a href="#" class="dark">{{ author.name }}</a></span>
+    <span class="user-name"><a href="{{ url_for('users.profile', userid=author.id) }}" class="dark">{{ author.name }}</a></span>
   </div>
 </div>
+{% if g.user.id == author.id %}
+<div class="sidebar-module sidebar-module-inset">
+  <div>
+    <a href={{ url_for('blogs.create_blog') }}>
+      <span class="span-common span-success">写文章</span>
+    </a>
+  </div>
+</div>
+{% endif %}

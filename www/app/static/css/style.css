@@ -19,6 +19,33 @@ h6, .h6 {
   color: #333;
 }
 
+body,html {
+  margin: 0;
+  padding: 0;
+  height:100%;
+}
+
+#main {
+  position: relative;
+  min-height:100%;
+  _height:100%;
+}
+
+#content {
+  padding: 0;
+  padding-bottom: 120px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  height: 120px;
+  width: 100%;
+  background:#ccc;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+
 a.dark {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -33,10 +60,6 @@ a.dark:link, a.dark:visited, a.dark:active {
 
 a.dark:hover {
   color: #385f8a;
-}
-
-a.warn {
-  color: #ff4040;
 }
 
 /*
@@ -170,19 +193,6 @@ a.warn {
 }
 
 
-/* Pagination */
-.pager {
-  margin-bottom: 60px;
-  text-align: left;
-}
-.pager > li > a {
-  width: 140px;
-  padding: 10px 20px;
-  text-align: center;
-  border-radius: 30px;
-}
-
-
 /*
  * Blog posts
  */
@@ -190,6 +200,22 @@ a.warn {
 .blog-cell {
   padding: 10px 0;
   text-align: justify;
+}
+
+.blog-cell a.dark {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: #333;
+}
+
+.blog-cell a.dark:link, a.dark:visited, a.dark:active {
+  color: #333;
+  text-decoration: none;
+}
+
+.blog-cell a.dark:hover {
+  color: #333;
 }
 
 .blog-cell-footer {
@@ -361,13 +387,14 @@ a.user-avatar img:hover {
   margin-bottom: 40px;
 }
 
-.blog-detail .title {
-
+.blog-detail hr {
+  margin-top: 0;
+  margin-bottom: 25px;
 }
 
 .blog-detail .desp {
-  padding-top: 10px;
-  font-size: 13px;
+  padding-top: 5px;
+  font-size: 14px;
   color: #999
 }
 
@@ -377,11 +404,50 @@ a.user-avatar img:hover {
 
 .blog-detail .content {
   font-size: 16px;
-  color: #555;
+  color: #333;
 }
 
 .blog-detail .footer {
   margin: 30px 0;
+}
+
+.blog-comment-edit {
+  padding: 15px;
+  margin: 30px 0 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.blog-comment-edit .CodeMirror {
+  height: 120px;
+}
+
+.blog-comment-cell {
+  padding: 15px;
+  margin: 0 0 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  color: #999;
+  font-size: 14px;
+}
+
+.blog-comment-cell .user-avatar {
+  float: left;
+  font-size: 14px;
+}
+
+.blog-comment-cell .user-name {
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.blog-comment-cell .comment-content {
+  padding-top: 5px;
+  padding-left: 40px;
+  color: #333;
 }
 
 .list-group {

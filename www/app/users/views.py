@@ -1,8 +1,14 @@
 from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
-from app import app
 from app import db
+from app.blogs.models import Blog
 from app.users.models import User
+from app.comments.models import Comment
+from app import app
+from app import utility as Util
+from app.blogs import constants as BLOG
 from app.users.decorators import requires_login
+
+from markdown import markdown
 
 mod = Blueprint('users', __name__, url_prefix='/users')
 
@@ -22,12 +28,14 @@ def before_request():
   if 'user_id' in session:
     g.user = User.query.get(session['user_id'])
 
+
 @mod.route('/login/')
 def login():
   redirect_uri = url_for('users.authorized', next=request.args.get('next') or 
     request.referrer or None, _external=True)
   params = {'redirect_uri': redirect_uri, 'scope': 'user:email'}
   return redirect(github.get_authorize_url(**params))
+
 
 @mod.route('/github/callback')
 def authorized():
@@ -56,9 +64,44 @@ def authorized():
   # flash('Logged in as ' + me['name'])
   return redirect(url_for('index'))
 
+
 @mod.route('/logout/')
 def logout():
   session.pop('user_id', None)
   session.pop('token', None)
   return redirect(url_for('index'))
 
+
+@mod.route('/<userid>/')
+def profile(userid):
+  page = request.args.get('page', 1)
+  page = int(page)
+
+  blog_num = db.session.query(Blog.id).count()
+  pages = blog_num / BLOG.PAGE_NUM + (1 if blog_num % BLOG.PAGE_NUM > 0 else 0)
+  
+  author = User.query.filter_by(id=userid).first()
+
+  blogs = []
+
+  for blog, user, comment_num in db.session.query(Blog, User, db.func.count(Comment.id)).\
+    outerjoin(User, Blog.user_id==User.id).\
+    outerjoin(Comment, Comment.blog_id==Blog.id).\
+    filter(Blog.user_id==userid).\
+    group_by(Comment.blog_id).\
+    order_by(Blog.created_at.desc()).\
+    offset((page - 1) * BLOG.PAGE_NUM).\
+    limit(BLOG.PAGE_NUM).\
+    all():
+    blog.created_at = Util.format_time(blog.created_at)
+    blog.content = Util.html2text(markdown(blog.content))[:500]
+    blog.author = user
+    blog.comment_num = comment_num
+    blogs.append(blog)
+
+  return render_template('users/profile.html', 
+    blogs=blogs, 
+    author=author,
+    current_page=page, 
+    pages=pages,
+    base=url_for('users.profile', userid=userid))

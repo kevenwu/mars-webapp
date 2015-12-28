@@ -7,6 +7,13 @@ from flask.ext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config.from_object('config')
 
+import logging,logging.handlers
+
+formatter = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
+fh = logging.handlers.RotatingFileHandler('../log/run.log', backupCount=10)
+fh.setFormatter(formatter)
+app.logger.addHandler(fh)
+
 db = SQLAlchemy(app)
 
 @app.errorhandler(404)
@@ -30,3 +37,6 @@ app.register_blueprint(usersModule)
 
 from app.blogs.views import mod as blogsModule
 app.register_blueprint(blogsModule)
+
+from app.comments.views import mod as commentsModule
+app.register_blueprint(commentsModule)

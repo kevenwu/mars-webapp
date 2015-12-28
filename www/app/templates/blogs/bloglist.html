@@ -1,0 +1,51 @@
+{% for blog in blogs %}
+<div class="blog-cell">
+  <a class="dark" href={{ url_for('blogs.show_blog', blogid=blog.id) }}>
+    <div>
+      <h2>{{ blog.title }}</h2>
+      <p>{{ blog.content }}</p>
+    </div>
+  </a>
+  <div class="blog-cell-footer">
+    <p class="right">评论 <a href="{{ url_for('blogs.show_blog', blogid=blog.id) }}">{{ blog.comment_num }}</a><span>浏览 {{ blog.read_num }}</span></p>
+    <p>{{ blog.created_at }}<span><a href="{{ url_for('users.profile', userid=blog.author.id) }}"> {{ blog.author.name }}</a></span></p>
+  </div>
+</div>
+<hr>
+{% endfor %}
+
+<div class="pagination" current_page={{ current_page }}>
+  <ul class="pagination" >
+    {% set base_url = base + ('&' if base.find('?') > 0 else '?') + 'page=' %}
+    {% if current_page == 1  %}
+    <li class="disabled"><a>«</a></li>
+    {% else %}
+    <li><a href="{{ base_url }}1">«</a></li>
+    {% endif %}
+    
+    {% set page_start = current_page - 2 if current_page - 2 > 0 else 1 %}
+    {% set page_end =  pages if page_start + 5 >= pages else page_start + 5 %}
+
+    {% if page_start > 1 %}
+    <li><a>...</a></li>
+    {% endif %}
+
+    {% for i in range(page_start, page_end + 1) %}
+    {% if i == current_page %}
+    <li class="active"><a>{{ i }}</a></li>
+    {% else %}
+    <li><a href="{{ base_url + '%d' %i }}">{{ i }}</a></li>
+    {% endif %}
+    {% endfor %}
+
+    {% if page_end < pages %}
+    <li><a>...</a></li>
+    {% endif %}
+
+    {% if current_page == pages %}
+    <li class="disabled"><a>»</a></li>
+    {% else %}
+    <li><a href="{{ base_url + '%d' %pages }}">»</a></li>
+    {% endif %}
+  </ul>
+</div>

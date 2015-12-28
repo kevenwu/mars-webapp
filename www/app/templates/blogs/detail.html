@@ -14,12 +14,12 @@
     <div class="desp">
       <p class="right">
         {% if author.id == g.user.id %}
-        <span><a href={{ url_for('blogs.edit_blog', blogid=blog.id) }}>编辑</a></span><span><a class="warn">删除</a></span>
+        <span><a href="{{ url_for('blogs.edit_blog', blogid=blog.id) }}">编辑</a></span><span><a href="#" id="delete_blog">删除</a></span>
         {% endif %}
-        <span>评论 5</span>
+        <span>评论 {{ blog.comment_num }}</span>
         <span>浏览 {{ blog.read_num }}</span>
       </p>
-      <p>{{ blog.created_at }}<span>作者：<a href="#">{{ author.name }}</a></span><span>修改于：{{ blog.modified_at }}</span></p>
+      <p>{{ blog.created_at }}<span><a href="{{ url_for('users.profile', userid=author.id) }}">{{ author.name }}</a></span><span>修改于：{{ blog.modified_at }}</span></p>
     </div>
 
     <hr>
@@ -27,56 +27,35 @@
     <div class="content">{{ blog.content|safe }}</div>
 
     <div class="footer">
-      <a href="#" class="right">下一篇<span class="glyphicon glyphicon-chevron-right"></span></a>
-      <a href="#"><span class="glyphicon glyphicon-chevron-left"></span>上一篇</a>
-    </div>
-    
-
-    <div style="margin-top:30px;">
-      <div class="sidebar-module sidebar-module-inset">
-        <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/logo_light40.png" width=36></img></div>
-          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
-          <div>2天前</div>
-        </div>
-        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
-      </div>
-
-      <div class="sidebar-module sidebar-module-inset">
-        <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/logo_light40.png" width=36></img></div>
-          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
-          <div>2天前</div>
-        </div>
-        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
-      </div>
-
-      <div class="sidebar-module sidebar-module-inset">
-        <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/logo_light40.png" width=36></img></div>
-          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
-          <div>2天前</div>
-        </div>
-        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
-      </div>
-
-      <div class="sidebar-module sidebar-module-inset">
-        <div>
-          <div style="float:left; margin-right:10px;"><img src="/static/img/logo_light40.png" width=36></img></div>
-          <div style="float:left; margin-right:5px;"><a>落地尘风</a></div>
-          <div>2天前</div>
-        </div>
-        <div style="margin-left:46px;">这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论这里是评论</div>
-      </div>
+      {% if blog.next %}
+      <a href={{ url_for('blogs.show_blog', blogid=blog.next.id) }} class="right">下一篇 {{ blog.next.title }}<span class="glyphicon glyphicon-chevron-right"></span></a>
+      {% endif %}
+      {% if blog.last %}
+      <a href={{ url_for('blogs.show_blog', blogid=blog.last.id) }}><span class="glyphicon glyphicon-chevron-left"></span>上一篇 {{ blog.last.title }}</a>
+      {% else %}
+      <p>&nbsp</p>
+      {% endif %}
     </div>
 
-    <div class="sidebar-module sidebar-module-inset">
-      <form id="edit_blog_form" action={{ url_for('blogs.create_blog') }} method='post'>
+    {% for comment in comments %}
+    <div class="blog-comment-cell">
+      <div>
+        <div class="user-avatar"><a href="{{ url_for('users.profile', userid=comment.user_id) }}"><img src="{{ comment.user_avatar }}" width=36></img></a></div>
+        <div class="user-name"><a href="{{ url_for('users.profile', userid=comment.user_id) }}">{{ comment.user_name }}</a></div>
+        <div>{{ loop.index }}楼 {{ comment.created_at }}</div>
+      </div>
+      <div class="comment-content">{{ comment.content|safe }}</div>
+    </div>
+    {% endfor %}
+
+    <div class="blog-comment-edit">
+      <form id="create_comment_form">
+        <label>评论：</label>
         <div class="markdown-editor">
-          <textarea class="editor" name="content" rows="8"></textarea>
+          <textarea class="editor" name="content" rows="3" placeholder='文章支持 Markdown 语法, 请注意标记代码'></textarea>
         </div>
         <div class="editor-buttons">
-          <input type="submit" class="span-common span-primary" value="回复">
+          <input type="submit" class="span-common span-primary" value="评论">
         </div>
       </form>
     </div>
@@ -89,7 +68,6 @@
     {% if not g.user %}
     {% include "sidebar/usercard.html" %}
     {% endif %}
-    {% include "sidebar/archive.html" %}
     </div>
   </div>
 </div>
@@ -101,12 +79,61 @@
 <script src="/static/lib/editor/ext.js"></script>
 <script>
 (function () {
-    var editor = new Editor();
-    editor.render($('.editor')[0]);
+  var editor = new Editor();
+  editor.render($('.editor')[0]);
 
-    $("#edit_blog_form").on("submit", function(e) {
-      
+  $("#delete_blog").click(deleteBlog);
+
+  $("#create_comment_form").on("submit", function(e) {
+
+    var content = $(this).find('textarea[name="content"]').val();
+    if(!content) {
+      alert('评论不能为空');
+      return false;
+    }
+
+    $.ajax({
+      type:"POST",
+      url:"{{ url_for('comments.create_comment') }}",
+      data: {
+        "blogid": {{ blog.id }},
+        "content": content
+      },        
+      success:function(data){
+        if(data.errcode==0){
+          alert(data.msg);
+          location.href = "{{ url_for('blogs.show_blog', blogid=blog.id) }}";
+        }else{
+          alert(data.msg);
+        }
+      },
+      error: function(){
+        alert("评论失败!");
+      }         
     });
+
+    return false;
+  });
 })();
+
+function deleteBlog() {
+  if(confirm("确定删除该文章？")) {
+    $.ajax({
+      type:"POST",
+      url:"{{ url_for('blogs.delete_blog', blogid=blog.id) }}",       
+      success:function(data){
+        if(data.errcode==0){
+          alert(data.msg);
+          location.href = "{{ url_for('index') }}";
+        }else{
+          alert(data.msg);
+        }
+      },
+      error: function(){
+        alert("删除文章失败!");
+      }         
+    });
+  }
+}
 </script>
 {% endblock %}

@@ -1,11 +1,17 @@
 # -*- coding:utf-8 -*-
+
 from datetime import datetime
 import time
 
-def datetime_filter(t):
+def format_time(ts):
+  tup_time = time.localtime(ts)
+  date = time.strftime("%Y-%m-%d %H:%M",tup_time)
+  return date
+
+def format_time_inverted(ts):
   dt_cur = datetime.fromtimestamp(time.time())
-  dt = datetime.fromtimestamp(t)
-  delta = int(time.time() - t)
+  dt = datetime.fromtimestamp(ts)
+  delta = int(time.time() - ts)
   if delta < 60:
     return u'刚刚'
   elif delta < 3600:
@@ -18,3 +24,9 @@ def datetime_filter(t):
     return u'%s月%s日' % (dt.month, dt.day)
   else:
     return u'%s年%s月%s日' % (dt.year, dt.month, dt.day)
+
+
+from BeautifulSoup import BeautifulSoup
+
+def html2text(html):
+  return ''.join(BeautifulSoup(html).findAll(text=True))
