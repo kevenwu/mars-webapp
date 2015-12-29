@@ -2,8 +2,8 @@
 <div class="blog-cell">
   <a class="dark" href={{ url_for('blogs.show_blog', blogid=blog.id) }}>
     <div>
-      <h2>{{ blog.title }}</h2>
-      <p>{{ blog.content }}</p>
+      <h1 class="title">{{ blog.title }}</h1>
+      <p class="content">{{ blog.content }}</p>
     </div>
   </a>
   <div class="blog-cell-footer">

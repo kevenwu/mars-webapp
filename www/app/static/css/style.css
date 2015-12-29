@@ -3,8 +3,7 @@
  */
 
 body {
-  /*font-family: Georgia, "Times New Roman", Times, serif;*/
-  font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+  font: 14px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: #555;
 }
 
@@ -111,6 +110,7 @@ a.dark:hover {
   margin-bottom: 0;
   border-bottom: 0;
   border-width: 0 0 1px;
+  font-size: 16px;
   -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
 }
@@ -166,8 +166,8 @@ a.dark:hover {
  */
 
 .blog-main {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 2em;
   margin-top: 60px;
   padding-right: 30px;
 }
@@ -200,6 +200,17 @@ a.dark:hover {
 .blog-cell {
   padding: 10px 0;
   text-align: justify;
+}
+
+.blog-cell .title {
+  font-weight: bold;
+  line-height: 1.4;
+  font-size: 2.25em;
+  line-height: 1.2;
+}
+
+.blog-cell .content {
+  font-size: 16px;
 }
 
 .blog-cell a.dark {
@@ -388,9 +399,75 @@ a.user-avatar img:hover {
   line-height: 2em;
 }
 
+.markdown-body h1, 
+.markdown-body h2, 
+.markdown-body h3, 
+.markdown-body h4, 
+.markdown-body h5, 
+.markdown-body h6 {
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  border: none;
+}
+
+code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre code {
+  display: inline;
+  font-size: inherit;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
 .blog-detail hr {
   margin-top: 0;
   margin-bottom: 25px;
+}
+
+.blog-detail .title {
+  font-weight: bold;
+  line-height: 1.4;
+  font-size: 2.25em;
+  line-height: 1.2;
 }
 
 .blog-detail .desp {

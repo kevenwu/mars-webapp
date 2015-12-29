@@ -29,7 +29,7 @@ def index():
   for blog, user, comment_num in db.session.query(Blog, User, db.func.count(Comment.id)).\
     outerjoin(User, Blog.user_id==User.id).\
     outerjoin(Comment, Comment.blog_id==Blog.id).\
-    group_by(Comment.blog_id).\
+    group_by(Blog.id).\
     order_by(Blog.created_at.desc()).\
     offset((page - 1) * BLOG.PAGE_NUM).\
     limit(BLOG.PAGE_NUM).\
@@ -79,6 +79,11 @@ def show_blog(blogid):
     comment.user_avatar = user.avatar
     comment.user_id = user.id
     comments.append(comment)
+
+  Blog.query.filter_by(id=blogid).update(dict(
+    read_num=blog.read_num+1
+  ))
+  db.session.commit()
 
   blog.created_at = Util.format_time(blog.created_at)
   blog.modified_at = Util.format_time(blog.modified_at)
