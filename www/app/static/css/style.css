@@ -410,6 +410,10 @@ a.user-avatar img:hover {
   font-weight: bold;
   line-height: 1.4;
 }
+.markdown-body img {
+  width: 100%;
+  border: 1px solid #eee;
+}
 
 .markdown-body h1 {
   padding-bottom: 0.3em;
@@ -434,7 +438,7 @@ a.user-avatar img:hover {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
-  line-height: 1.45;
+  line-height: 1.5em;
   background-color: #f7f7f7;
   border-radius: 3px;
   border: none;

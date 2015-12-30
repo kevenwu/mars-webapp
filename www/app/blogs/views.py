@@ -55,6 +55,11 @@ def show_blog(blogid):
     filter(Blog.id==blogid).\
     filter(User.id==Blog.user_id).\
     first()
+    
+  Blog.query.filter_by(id=blogid).update(dict(
+    read_num=blog.read_num+1
+  ))
+  db.session.commit()
 
   next = db.session.query(Blog.id, Blog.title).\
     order_by(Blog.created_at).\
@@ -74,20 +79,15 @@ def show_blog(blogid):
     filter(Comment.blog_id==blogid).\
     all():
     comment.created_at = Util.format_time_inverted(comment.created_at)
-    comment.content = markdown(comment.content)
+    comment.content = markdown(comment.content, ['codehilite'])
     comment.user_name = user.name
     comment.user_avatar = user.avatar
     comment.user_id = user.id
     comments.append(comment)
 
-  Blog.query.filter_by(id=blogid).update(dict(
-    read_num=blog.read_num+1
-  ))
-  db.session.commit()
-
   blog.created_at = Util.format_time(blog.created_at)
   blog.modified_at = Util.format_time(blog.modified_at)
-  blog.content = markdown(blog.content)
+  blog.content = markdown(blog.content, ['codehilite'])
   blog.last = last
   blog.next = next
   blog.comment_num = len(comments)
