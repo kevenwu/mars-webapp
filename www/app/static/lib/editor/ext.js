@@ -31,7 +31,8 @@
     var ToolLink = function(){
         var self = this;
         this.$win = $([
-            '<div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editorToolImageTitle" aria-hidden="true">',
+            '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="editorToolImageTitle" aria-hidden="true">',
+            '<div class="modal-dialog">',
                 '<div class="modal-header">',
                     '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>',
                     '<h3 id="editorToolImageTitle">添加连接</h3>',
@@ -55,6 +56,7 @@
                 '<div class="modal-footer">',
                     '<button class="btn btn-primary" role="save">确定</button>',
                 '</div>',
+            '</div>',
             '</div>'
         ].join('')).appendTo($body);
 
@@ -84,7 +86,8 @@
     var ToolImage = function(){
         var self = this;
         this.$win = $([
-            '<div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editorToolImageTitle" aria-hidden="true">',
+            '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="editorToolImageTitle" aria-hidden="true">',
+            '<div class="modal-dialog">',
                 '<div class="modal-header">',
                     '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>',
                     '<h3 id="editorToolImageTitle">图片</h3>',
@@ -96,6 +99,7 @@
                         '<div class="alert alert-error hide"></div>',
                     '</div>',
                 '</div>',
+            '</div>',
             '</div>'
         ].join('')).appendTo($body);
 

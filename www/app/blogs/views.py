@@ -109,7 +109,9 @@ def create_blog():
       user_id=g.user.id, 
       title=form.title.data,
       content=form.content.data,
-      status=BLOG.PUBLISH
+      status=BLOG.PUBLISH,
+      created_at=int(time.time()),
+      modified_at=int(time.time())
     )
     db.session.add(blog)
     db.session.commit()
@@ -154,3 +156,10 @@ def delete_blog(blogid):
   Blog.query.filter_by(id=blogid).delete()
   db.session.commit()
   return jsonify(errcode=0, msg=u"删除文章成功")
+
+
+@mod.route('/upload/', methods=['POST'])
+def upload():
+  pass
+
+  

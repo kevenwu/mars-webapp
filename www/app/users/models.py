@@ -9,7 +9,7 @@ class User(db.Model):
   name = db.Column(db.String(50), unique=True)
   avatar = db.Column(db.String(256))
   role = db.Column(db.SmallInteger, default=USER.READER)
-  created_at = db.Column(db.Integer, default=int(time.time()))
+  created_at = db.Column(db.Integer)
 
   def getRole(self):
     return USER.ROLE[self.role]

@@ -9,7 +9,7 @@ class Comment(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
   blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
   content = db.Column(db.Text)
-  created_at = db.Column(db.Integer, default=int(time.time()))
+  created_at = db.Column(db.Integer)
 
   def __repr__(self):
     return '<Comment %r>' % (self.id)

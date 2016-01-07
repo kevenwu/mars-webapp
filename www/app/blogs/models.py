@@ -11,8 +11,8 @@ class Blog(db.Model):
   content = db.Column(db.Text)
   status = db.Column(db.SmallInteger, default=BLOG.DRAFT)
   read_num = db.Column(db.Integer, default=0)
-  created_at = db.Column(db.Integer, default=int(time.time()))
-  modified_at = db.Column(db.Integer, default=int(time.time()))
+  created_at = db.Column(db.Integer)
+  modified_at = db.Column(db.Integer)
 
   def __repr__(self):
     return '<Blog %r>' % (self.id)

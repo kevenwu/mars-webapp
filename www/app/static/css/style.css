@@ -535,3 +535,14 @@ code {
 .list-group {
   border: none;
 }
+
+.modal {
+  top: 10%;
+}
+
+.modal-dialog {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  width: 720px;
+}

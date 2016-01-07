@@ -5,6 +5,7 @@ from app import db
 from app.comments.models import Comment
 from app.users.decorators import requires_login
 from markdown import markdown
+import time
 
 mod = Blueprint('comments', __name__, url_prefix='/comments')
 
@@ -17,6 +18,7 @@ def create_comment():
     user_id=g.user.id, 
     blog_id=request.form['blogid'],
     content=request.form['content'],
+    create=int(time.time())
   )
   print comment
   db.session.add(comment)
