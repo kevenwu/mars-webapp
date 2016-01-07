@@ -153,6 +153,7 @@ def delete_blog(blogid):
   if not blog or not blog.user_id == g.user.id:
     return jsonify(errcode=-1, msg=u'删除文章失败!')
 
+  Comment.query.filter_by(blog_id=blogid).delete()
   Blog.query.filter_by(id=blogid).delete()
   db.session.commit()
   return jsonify(errcode=0, msg=u"删除文章成功")
