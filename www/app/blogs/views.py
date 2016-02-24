@@ -148,6 +148,7 @@ def edit_blog(blogid):
 
 @mod.route('/<blogid>/delete/', methods=['POST'])
 def delete_blog(blogid):
+  Comment.query.filter_by(blog_id=blogid).delete()
   blog = Blog.query.filter_by(id=blogid).first()
 
   if not blog or not blog.user_id == g.user.id:
