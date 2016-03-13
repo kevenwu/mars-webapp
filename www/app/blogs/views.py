@@ -47,7 +47,7 @@ def index():
     node = tree.xpath("//img/@src")
     if len(node) > 0:
       blog.cover = node[0]
-    blog.content = Util.html2text(html)[:300]
+    blog.content = Util.html2text(html)[:300] + '...'
     blog.author = user
     blog.comment_num = comment_num
     blogs.append(blog)

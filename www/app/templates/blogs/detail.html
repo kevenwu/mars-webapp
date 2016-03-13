@@ -105,7 +105,9 @@
         if(data.errcode==0){
           alert(data.msg);
           location.href = "{{ url_for('blogs.show_blog', blogid=blog.id) }}";
-        }else{
+        }else if (data.errcode==-1) {
+          location.href = "/users/login";
+        }else {
           alert(data.msg);
         }
       },

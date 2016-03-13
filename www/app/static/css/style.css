@@ -33,6 +33,10 @@ body,html {
   background: #212121;
 }
 
+.breadcrumb {
+  background-color: #f0f0f0;
+}
+
 #main {
   position: relative;
   min-height:100%;
@@ -71,8 +75,9 @@ body,html {
 
 @media (max-width: 769px) {
   #header {
-    font-size: 1.5em;
+    font-size: 2em;
     line-height: 250px;
+    background-image: url(http://7xr7bq.com1.z0.glb.clouddn.com/bg4.jpg);
   }
 
   #header .logo {
@@ -166,7 +171,11 @@ a.dark:hover {
 
 @media (max-width: 769px) {
   .blog-masthead {
-    display: none;
+    /*display: none;*/
+  }
+
+  .blog-masthead .navbar-collapse {
+    background-color: #428bca;
   }
 }
 
@@ -266,7 +275,7 @@ a.dark:hover {
 .blog-cell .title {
   font-weight: bold;
   line-height: 1.4;
-  font-size: 2.25em;
+  font-size: 3em;
   line-height: 1.2;
 }
 
@@ -501,6 +510,14 @@ a.user-avatar img:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: #fff 0.5em solid;
+  background-color: #fff;
+}
+
+@media (max-width: 769px) {
+  .markdown-body img {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 .blog-cell img {
@@ -514,14 +531,14 @@ a.user-avatar img:hover {
   padding-bottom: 0.3em;
   font-size: 2.25em;
   line-height: 1.2;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px dashed #dddddd;
 }
 
 .markdown-body h2 {
   padding-bottom: 0.3em;
   font-size: 1.75em;
   line-height: 1.225;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px dashed #dddddd;
 }
 
 .markdown-body h3 {
@@ -565,7 +582,7 @@ code {
 .blog-detail .title {
   font-weight: bold;
   line-height: 1.4;
-  font-size: 2.25em;
+  font-size: 3em;
   line-height: 1.2;
 }
 

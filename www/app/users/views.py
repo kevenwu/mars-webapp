@@ -88,7 +88,7 @@ def profile(userid):
     outerjoin(User, Blog.user_id==User.id).\
     outerjoin(Comment, Comment.blog_id==Blog.id).\
     filter(Blog.user_id==userid).\
-    group_by(Comment.blog_id).\
+    group_by(Blog.id).\
     order_by(Blog.created_at.desc()).\
     offset((page - 1) * BLOG.PAGE_NUM).\
     limit(BLOG.PAGE_NUM).\
