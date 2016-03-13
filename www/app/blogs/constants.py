@@ -1,4 +1,4 @@
 DRAFT = 0
 PUBLISH = 1
 
-PAGE_NUM = 10
+PAGE_NUM = 5

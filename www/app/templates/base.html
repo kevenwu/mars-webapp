@@ -9,7 +9,12 @@
     <meta name="author" content="">
     <link rel="icon" href="/static/favicon.ico">
 
-    <title>Kevenwu的官方网站</title>
+    {% set title = title %}
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>kevenwu的官方网站</title>
+    {% endif %}
 
     <!-- Bootstrap core CSS -->
     <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +43,12 @@
 
     <div id="main">
 
-      <div id="content">
+      <div id="content" class="container">
+
+        <div id="header">
+          <div class="logo"><img src="/static/img/logo64.png"></div>
+          <div>Kevenwu的官方网站</div>
+        </div>
 
         <nav class="navbar navbar-default blog-masthead">
           <div class="container container-fluid">
@@ -50,7 +60,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/"><span><img src="/static/img/logo40.png"></span>Kevenwu的官方网站</a>
+              <!-- <a class="navbar-brand" href="/"><span><img src="/static/img/logo40.png"></span>Kevenwu的官方网站</a> -->
             </div>
             
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,7 +71,7 @@
                   ('/source/', 'source', '源代码'),
                   ('/about/', 'about', '关于')
                 ] -%}
-                {% set active_page = active_page -%}
+                {% set active_page = active_page %}
 
                 {% for href, id, caption in navigation_bar %}
                   <li{% if id == active_page %} class="active"{% endif
@@ -93,13 +103,12 @@
         {% block body %}{% endblock %}
         </div><!-- /.container -->
 
-      </div>
+        <div id="footer" class="blog-footer container">
+          <p>kevenwu的官方网站<a href="http://www.kevenwu.com/">kevenwu.com</a></p>
+          <p><a href="#">返回顶部</a></p>
+        </div>
 
-      <div id="footer" class="blog-footer">
-        <p>kevenwu的官方网站<a href="http://www.kevenwu.com/">kevenwu.com</a></p>
-        <p><a href="#">返回顶部</a></p>
       </div>
-
     </div>
 
 

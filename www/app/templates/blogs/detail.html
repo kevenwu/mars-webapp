@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% set title = blog.title %}
 
 {% block header %}
 <link href="/static/lib/editor/editor.css" rel="stylesheet">
@@ -17,10 +18,10 @@
         {% if author.id == g.user.id %}
         <span><a href="{{ url_for('blogs.edit_blog', blogid=blog.id) }}">编辑</a></span><span><a href="#" id="delete_blog">删除</a></span>
         {% endif %}
-        <span>评论 {{ blog.comment_num }}</span>
+        <span >评论 {{ blog.comment_num }}</span>
         <span>浏览 {{ blog.read_num }}</span>
       </p>
-      <p>{{ blog.created_at }}<span><a href="{{ url_for('users.profile', userid=author.id) }}">{{ author.name }}</a></span><span>修改于：{{ blog.modified_at }}</span></p>
+      <p>{{ blog.created_at }}<span><a href="{{ url_for('users.profile', userid=author.id) }}">{{ author.name }}</a></span><span class="modified_at">修改于：{{ blog.modified_at }}</span></p>
     </div>
 
     <hr>

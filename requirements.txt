@@ -10,3 +10,4 @@ ujson==1.33
 Werkzeug==0.10.1
 beautifulsoup==3.2.1
 Pygments==2.0.2
+lxml==3.4.4
