@@ -58,6 +58,11 @@ body,html {
   font-size: 3em;
 }
 
+#header a {
+  text-decoration: none;
+  color: white;
+}
+
 #header .logo {
   float: left; 
   margin-right: 10px; 
