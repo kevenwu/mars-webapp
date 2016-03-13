@@ -455,11 +455,15 @@ a.user-avatar img:hover {
   line-height: 2em;
 }
 
+.blog-detail p {
+  text-align: justify;
+}
+
 @media (max-width: 769px) {
   .blog-detail {
     margin-top: 20px;
   }
-  
+
   .blog-detail .desp .right,
   .blog-detail .desp .modified_at {
     display: none;
