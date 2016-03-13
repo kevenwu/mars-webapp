@@ -75,7 +75,7 @@ body,html {
 
 @media (max-width: 769px) {
   #header {
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: 250px;
     background-image: url(http://7xr7bq.com1.z0.glb.clouddn.com/bg4.jpg);
   }
@@ -279,6 +279,12 @@ a.dark:hover {
   line-height: 1.2;
 }
 
+@media (max-width: 769px) {
+  .blog-cell .title {
+    font-size: 2.25em;
+  }
+}
+
 .blog-cell .content {
   font-size: 16px;
 }
@@ -475,7 +481,8 @@ a.user-avatar img:hover {
 
 @media (max-width: 769px) {
   .blog-detail {
-    margin-top: 20px;
+    margin-top: 30px;
+    line-height: 1.8em;
   }
 
   .blog-detail .desp .right,
@@ -493,7 +500,7 @@ a.user-avatar img:hover {
   margin-top: 1em;
   margin-bottom: 16px;
   font-weight: bold;
-  line-height: 1.4;
+  line-height: 1.2em;
 }
 
 .blog-cell img,
@@ -584,6 +591,12 @@ code {
   line-height: 1.4;
   font-size: 3em;
   line-height: 1.2;
+}
+
+@media (max-width: 769px) {
+  .blog-detail .title {
+    font-size: 2.25em;
+  }
 }
 
 .blog-detail .desp {
