@@ -17,6 +17,7 @@
       {% from "forms/macros.html" import render_field %}
       <form method="post">
         {{ render_field(form.title, class="form-control") }}
+        {{ render_field(form.tag, class="form-control") }}
         {{ render_field(form.content, class="editor") }}
         <input type="submit" class="span-common span-primary" value="提交">
       </form>

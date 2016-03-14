@@ -8,6 +8,7 @@ class Blog(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
   title = db.Column(db.String(120))
+  tag = db.Column(db.String(50))
   content = db.Column(db.Text)
   status = db.Column(db.SmallInteger, default=BLOG.DRAFT)
   read_num = db.Column(db.Integer, default=0)

@@ -1,0 +1,8 @@
+<div class="sidebar-module sidebar-module-inset">
+  <p>最近更新</p>
+  <ol class="list-unstyled">
+    {% for blog in latesets %}
+    <li><a href="{{ url_for('blogs.show_blog', blogid=blog.id) }}">{{ blog.title }}</a></li>
+    {% endfor %}
+  </ol>
+</div>

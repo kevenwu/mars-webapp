@@ -13,6 +13,12 @@
 
     <h1 class="title">{{ blog.title }}</h1>
 
+    {% if blog.tag %}
+    <div>
+      <button class="btn btn-success btn-xs">{{ blog.tag }}</button>
+    </div>
+    {% endif %}
+    
     <div class="desp">
       <p class="right">
         {% if author.id == g.user.id %}

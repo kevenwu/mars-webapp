@@ -52,10 +52,26 @@ def index():
     blog.comment_num = comment_num
     blogs.append(blog)
 
+  db.session.close()
+
+  latesets = []
+  for blog in db.session.query(Blog).order_by(Blog.modified_at.desc()).limit(BLOG.LATEST_NUM).all():
+    latesets.append(blog)
+  db.session.close()
+
+  tags = []
+  for blog, tag_num in db.session.query(Blog, db.func.count(Blog.tag)).\
+    filter(Blog.tag!=None).\
+    group_by(Blog.tag).\
+    all():
+    tags.append(blog.tag)
+
   return render_template('blogs/index.html', 
     blogs=blogs, 
     current_page=page, 
     pages=pages,
+    latesets=latesets,
+    tags=tags,
     base=url_for('blogs.index'))
 
 
@@ -120,6 +136,7 @@ def create_blog():
     blog = Blog(
       user_id=g.user.id, 
       title=form.title.data,
+      tag=form.tag.data,
       content=form.content.data,
       status=BLOG.PUBLISH,
       created_at=int(time.time()),
@@ -149,6 +166,7 @@ def edit_blog(blogid):
     if form.validate_on_submit():
       Blog.query.filter_by(id=blogid).update(dict(
         title=form.title.data,
+        tag=form.tag.data,
         content=form.content.data,
         modified_at=int(time.time())
       ))
