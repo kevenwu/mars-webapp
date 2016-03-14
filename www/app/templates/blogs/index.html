@@ -1,10 +1,20 @@
 {% extends "base.html" %}
+{% if tag %}
+{% set title = tag %}
+{% else %}
 {% set active_page = "index" %}
+{% endif %}
 
 {% block body %}
 <div class="row">
 
   <div class="col-sm-8 blog-main">
+    {% if tag %}
+    <ol class="breadcrumb">
+      <li><a href="/">主页</a></li>
+      <li class="active">{{ tag }}</li>
+    </ol>
+    {% endif %}
     {% include 'blogs/bloglist.html' %}
   </div>
 

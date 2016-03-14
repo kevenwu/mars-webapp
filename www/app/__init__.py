@@ -30,7 +30,7 @@ def source():
 
 @app.route('/about/')
 def about():
-  return render_template('users/login.html')
+  return render_template('about.html')
 
 from app.users.views import mod as usersModule
 app.register_blueprint(usersModule)

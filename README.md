@@ -1,6 +1,7 @@
 # mars-webapp
 
-`mars-webapp` is a blog-like webapp based on Flask.
+`mars-webapp` is a blog webapp based on Flask.
+ [http://www.kevenwu.com](http://www.kevenwu.com)
 
 ## Usage
 ### Install Dependences

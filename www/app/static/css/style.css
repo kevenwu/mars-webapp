@@ -81,7 +81,11 @@ body,html {
   }
 
   #header .logo {
-    margin-left: 20px
+    margin-left: 20px;
+  }
+
+  #header img {
+    width: 40px;
   }
 }
 
@@ -504,8 +508,9 @@ a.user-avatar img:hover {
 }
 
 .blog-cell img,
-.markdown-body img {
-  max-width: 80%;
+.markdown-body img,
+.about img {
+  max-width: 90%;
   -webkit-border-radius: 0.3em;
   -moz-border-radius: 0.3em;
   -ms-border-radius: 0.3em;
@@ -518,6 +523,21 @@ a.user-avatar img:hover {
   box-sizing: border-box;
   border: #fff 0.5em solid;
   background-color: #fff;
+}
+
+.about {
+  margin: 30px 15px;
+}
+
+.about h1,
+.about h3 {
+  font-weight: 500;
+}
+
+.about img {
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 769px) {

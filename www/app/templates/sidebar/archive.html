@@ -2,7 +2,7 @@
   <p>文章归类</p>
   <ol class="list-unstyled">
     {% for tag in tags %}
-    <li><a href="#">{{ tag }}</a></li>
+    <li><a href="/blogs?tag={{ tag }}">{{ tag }}</a></li>
     {% endfor %}
   </ol>
 </div>

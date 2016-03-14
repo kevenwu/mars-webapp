@@ -15,7 +15,7 @@
 
     {% if blog.tag %}
     <div>
-      <button class="btn btn-success btn-xs">{{ blog.tag }}</button>
+      文章分类: <a href="/blogs?tag={{ blog.tag }}"><button class="btn btn-success btn-xs">{{ blog.tag }}</button></a>
     </div>
     {% endif %}
     

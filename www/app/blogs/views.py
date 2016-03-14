@@ -27,13 +27,19 @@ def getText(elem):
 def index():
   page = request.args.get('page', 1)
   page = int(page)
+  tag = request.args.get('tag')
 
   blog_num = db.session.query(Blog.id).count()
   pages = blog_num / BLOG.PAGE_NUM + (1 if blog_num % BLOG.PAGE_NUM > 0 else 0)
   
   blogs = []
 
-  for blog, user, comment_num in db.session.query(Blog, User, db.func.count(Comment.id)).\
+  if tag:
+    result = db.session.query(Blog, User, db.func.count(Comment.id)).filter(Blog.tag==tag)
+  else:
+    result = db.session.query(Blog, User, db.func.count(Comment.id))
+
+  for blog, user, comment_num in result.\
     outerjoin(User, Blog.user_id==User.id).\
     outerjoin(Comment, Comment.blog_id==Blog.id).\
     group_by(Blog.id).\
@@ -72,6 +78,7 @@ def index():
     pages=pages,
     latesets=latesets,
     tags=tags,
+    tag=tag,
     base=url_for('blogs.index'))
 
 
