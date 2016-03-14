@@ -3,14 +3,14 @@
 `mars-webapp` is a blog webapp based on Flask.
  [http://www.kevenwu.com](http://www.kevenwu.com)
 
-## Usage
-### Install Dependences
-    pip install -r requirements.txt
-
 ## ScreenShot
 ![screen1](http://7xr7bq.com1.z0.glb.clouddn.com/mars_webapp_screen1.png)
 
 ![screen2](http://7xr7bq.com1.z0.glb.clouddn.com/mars_webapp_screen2.png)
+
+## Usage
+### Install Dependences
+    pip install -r requirements.txt
 
 ### Initialize Database
     python shell.py 
