@@ -7,6 +7,11 @@
 ### Install Dependences
     pip install -r requirements.txt
 
+## ScreenShot
+![screen1](http://7xr7bq.com1.z0.glb.clouddn.com/mars_webapp_screen1.png)
+
+![screen2](http://7xr7bq.com1.z0.glb.clouddn.com/mars_webapp_screen2.png)
+
 ### Initialize Database
     python shell.py 
     >>>from app import db
