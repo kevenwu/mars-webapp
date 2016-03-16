@@ -17,12 +17,6 @@ from lxml import etree
 
 mod = Blueprint('blogs', __name__, url_prefix='/blogs')
 
-def getText(elem):
-  rc = []
-  for node in elem.itertext():
-      rc.append(node.strip())
-  return ''.join(rc)
-
 @mod.route('/')
 def index():
   page = request.args.get('page', 1)
@@ -53,7 +47,7 @@ def index():
     node = tree.xpath("//img/@src")
     if len(node) > 0:
       blog.cover = node[0]
-    blog.content = Util.html2text(html)[:300] + '...'
+    blog.content = Util.html2text(html)[:200] + '...'
     blog.author = user
     blog.comment_num = comment_num
     blogs.append(blog)

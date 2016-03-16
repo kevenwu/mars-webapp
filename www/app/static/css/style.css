@@ -76,7 +76,8 @@ body,html {
 @media (max-width: 769px) {
   #header {
     font-size: 1.5em;
-    line-height: 250px;
+    height: 200px;
+    line-height: 200px;
     background-image: url(http://7xr7bq.com1.z0.glb.clouddn.com/bg4.jpg);
   }
 
